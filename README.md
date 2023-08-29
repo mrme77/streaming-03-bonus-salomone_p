@@ -1,6 +1,8 @@
 # Project Title: streaming-03-bonus-salomone_p
 ## Introduction:
-This project creates a producer that reads data from an Airport CSV file and writes messages to a new queue every 1-3 seconds.It also creates a new consumer that reads the messages from the queue, and writes the messages to a new file as they are received.
+This project involves the creation of a producer that reads data from an Airport CSV file and sends messages to a new queue at intervals of 1-3 seconds. Simultaneously, a consumer is implemented to read these messages from the queue and write them to a new file as they are received.
+
+In a fictional scenario, a company named 'Alpha' represents a consumer that acquires airport data by reading the messages produced by the aforementioned process. These messages contain relevant information from the Airport CSV file, and 'Alpha' can process this data for their specific needs.
 
 -The `producer_salomone.py` program overall demonstrates how to establish a connection with RabbitMQ, send messages to a queue,handle interrupts gracefully or peacefully whichever definition sounds best, and manage RabbitMQ connections effectively.
 
