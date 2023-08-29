@@ -11,6 +11,14 @@ host = 'localhost'
 connection = None  # To store the RabbitMQ connection
 
 def send_message_to_queue(queue_name, message):
+    """
+    Sends a message to a specified queue on the RabbitMQ server.
+
+    Parameters:
+        queue_name (str): The name of the queue to which the message will be sent.
+        message (str): The message to be sent to the queue.
+
+    """
     global connection  # Access the global connection variable
     if connection is None or connection.is_closed:
         connection = pika.BlockingConnection(pika.ConnectionParameters(host=host))
@@ -20,6 +28,14 @@ def send_message_to_queue(queue_name, message):
     print(f" [x] Sent: {message}")
 
 def main_producer(csv_filename, queue_name):
+    """
+    Reads data from a CSV file and sends messages to a queue on the RabbitMQ server.
+
+    Parameters:
+        csv_filename (str): The name of the CSV file to read data from.
+        queue_name (str): The name of the queue to which messages will be sent.
+
+    """
     with open(csv_filename, 'r') as csvfile:
         reader = csv.reader(csvfile)
         header = next(reader)  # Skip header row
@@ -33,6 +49,14 @@ def main_producer(csv_filename, queue_name):
                 handle_interrupt(None, None)  # Handle the interrupt gracefully
 
 def handle_interrupt(signal, frame):
+    """
+    Gracefully handles the interrupt (Ctrl+C) signal.
+
+    Parameters:
+        signal: The signal that triggered the interrupt.
+        frame: The interrupted stack frame.
+
+    """
     global connection  # Access the global connection variable
     if connection is not None and connection.is_open:
         connection.close()
